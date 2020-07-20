@@ -8,14 +8,14 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 setup(
     name="smtputility",
     packages=['smtputility'],
-    version="1.0",
+    version="1.1",
     author="Matthew Jensen",
     author_email="matt@matthewjensen.dev",
     description="SMTP email automation functions",
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/MattDJensen/SMTP_Utility_Package',
-    download_url='https://github.com/MattDJensen/SMTP_Utility_Package/archive/1.0.tar.gz',
+    download_url='https://github.com/MattDJensen/SMTP_Utility_Package/archive/1.1.tar.gz',
     license="MIT",
     setup_requires=['wheel'],
     install_requires=[

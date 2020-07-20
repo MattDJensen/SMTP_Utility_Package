@@ -16,7 +16,7 @@ def email_without_attachment(message: str, subject: str, to_list: str, cc_list: 
 ```
 ##### Example Call 
 ```python
-from mj.smtputility import email_without_attachment
+from smtputility import email_without_attachment
 test_message = """
 <HTML>
     <BODY>
@@ -26,7 +26,7 @@ test_message = """
 </HTML>
 """
 
-smtp_msg_automation.email_without_attachment(test_message,'SMTP Testing','a@abc.com;b@abc.com;','c@abc.com','email@domain.com','password')
+email_without_attachment(test_message,'SMTP Testing','a@abc.com;b@abc.com;','c@abc.com','email@domain.com','password')
 
 ```
 
@@ -48,8 +48,8 @@ def email_with_attachments(
 ```
 ##### Example Call 
 ```python
-from mj.smtputility import email_with_attachments
-import smtp_msg_automation
+from smtputility import email_with_attachments
+
 test_message = """
 <HTML>
     <BODY>
@@ -59,7 +59,7 @@ test_message = """
 </HTML>
 """
 
-smtp_msg_automation.email_with_attachments(test_message,'SMTP Testing','a@abc.com;b@abc.com;','c@abc.com','email@domain.com','password',
+email_with_attachments(test_message,'SMTP Testing','a@abc.com;b@abc.com;','c@abc.com','email@domain.com','password',
 r'C:\Users\user\some_directory\test_1.txt')
 ```
 
@@ -77,12 +77,42 @@ def notify_error(report_name, error_log, to_list: str,login: str, password: str)
 ```
 ##### Example Call
 ```python
-from mj.smtputility import notify_error
+from smtputility import notify_error
 import os
 def foo():
-    #do thing
+    raise Exception('Error!')
 try:
     foo()
 except Exception as e:
-    smtp_msg_automation.notify_error(f"{os.path.basename(__file__)}", e, "a@email.com",'email@domain.com','password')
+    notify_error(f"{os.path.basename(__file__)}", e, "a@email.com",'email@domain.com','password')
+```
+
+
+#### notify_error: Automated email report for use in exception catch. 
+```python
+def default_table_style(df):
+    """ Apply a default clean table style to pandas df.to_html() for use in email strings.
+
+    :param df: Dataframe to apply the style to.
+    :type df: Pandas Dataframe
+    :return: HTML string for insertion in email.
+    :rtype: string
+    """
+```
+##### Example Call
+```python
+from smtputility import default_table_style
+import pandas as pd
+import numpy as np
+df = pd.DataFrame(np.random.randint(0,100,size=(15, 4)), columns=list('ABCD'))
+html_df_string = default_table_style(df)
+#Example in email string
+test_message = f"""
+<HTML>
+    <BODY>
+     {html_df_string}
+     <br>
+    </BODY>
+</HTML>
+"""
 ```
